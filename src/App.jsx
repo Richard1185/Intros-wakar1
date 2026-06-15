@@ -208,35 +208,35 @@ function PreviewCanvas({ transition, params, playing, onEnd, canvasRef: external
 }
 
 function ParamControl({ param, value, onChange }) {
-  const s = { fontSize: 11, color: "var(--color-text-secondary)", display: "block", marginBottom: 3 };
+  const s = { fontSize: 13, color: "var(--color-text-secondary)", display: "block", marginBottom: 4 };
   if (param.type === "text") return (
-    <div style={{ marginBottom: 6 }}>
+    <div style={{ marginBottom: 8 }}>
       <label style={s}>{param.label}</label>
       <input type="text" value={value} onChange={e => onChange(e.target.value)}
-        style={{ width: "100%", boxSizing: "border-box", fontFamily: "monospace", fontSize: 11 }} />
+        style={{ width: "100%", boxSizing: "border-box", fontFamily: "monospace", fontSize: 13 }} />
     </div>
   );
   if (param.type === "color") return (
-    <div style={{ marginBottom: 6, display: "flex", alignItems: "center", gap: 6 }}>
+    <div style={{ marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}>
       <label style={{ ...s, marginBottom: 0 }}>{param.label}</label>
       <input type="color" value={value} onChange={e => onChange(e.target.value)}
-        style={{ width: 28, height: 22, border: "none", cursor: "pointer", background: "none" }} />
-      <span style={{ fontSize: 9, fontFamily: "monospace", color: "var(--color-text-secondary)" }}>{value}</span>
+        style={{ width: 32, height: 26, border: "none", cursor: "pointer", background: "none" }} />
+      <span style={{ fontSize: 11, fontFamily: "monospace", color: "var(--color-text-secondary)" }}>{value}</span>
     </div>
   );
   if (param.type === "range") return (
-    <div style={{ marginBottom: 6 }}>
+    <div style={{ marginBottom: 8 }}>
       <label style={s}>{param.label}: <strong style={{ color: "var(--color-text-primary)" }}>{value}%</strong></label>
       <input type="range" min={param.min} max={param.max} step={1} value={value}
         onChange={e => onChange(Number(e.target.value))} style={{ width: "100%" }} />
     </div>
   );
   if (param.type === "toggle") return (
-    <div style={{ marginBottom: 6, display: "flex", alignItems: "center", gap: 8 }}>
+    <div style={{ marginBottom: 8, display: "flex", alignItems: "center", gap: 10 }}>
       <label style={{ ...s, marginBottom: 0 }}>{param.label}</label>
       <button onClick={() => onChange(!value)}
         style={{
-          padding: "1px 8px", fontSize: 9, borderRadius: 12,
+          padding: "4px 12px", fontSize: 12, borderRadius: 16,
           background: value ? "#00ff8822" : "transparent",
           color: value ? "#00ff88" : "var(--color-text-secondary)",
           border: `1px solid ${value ? "#00ff88" : "var(--color-border-tertiary)"}`,
@@ -247,9 +247,9 @@ function ParamControl({ param, value, onChange }) {
     </div>
   );
   if (param.type === "select") return (
-    <div style={{ marginBottom: 6 }}>
+    <div style={{ marginBottom: 8 }}>
       <label style={s}>{param.label}</label>
-      <select value={value} onChange={e => onChange(e.target.value)} style={{ width: "100%", fontSize: 11 }}>
+      <select value={value} onChange={e => onChange(e.target.value)} style={{ width: "100%", fontSize: 13 }}>
         {param.options.map(o => <option key={o}>{o}</option>)}
       </select>
     </div>
@@ -335,16 +335,16 @@ export default function App() {
                 borderLeft: selected.id === t.id ? `3px solid ${t.color}` : "3px solid transparent",
                 transition: "background 0.15s",
               }}>
-              <div style={{ fontSize: 20, marginBottom: 4 }}>{t.icon}</div>
-              <div style={{ fontSize: 15, fontWeight: 600, color: "var(--color-text-primary)", lineHeight: 1.25 }}>{t.name}</div>
-              <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 3 }}>{t.category} · {(t.duration / 1000).toFixed(1)}s</div>
-              <div style={{ display: "flex", gap: 4, marginTop: 6, flexWrap: "wrap" }}>
+              <div style={{ fontSize: 18, marginBottom: 4 }}>{t.icon}</div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: "var(--color-text-primary)" }}>{t.name}</div>
+              <div style={{ fontSize: 12, color: "var(--color-text-secondary)", marginTop: 2 }}>{t.category} · {(t.duration / 1000).toFixed(1)}s</div>
+              <div style={{ display: "flex", gap: 4, marginTop: 4, flexWrap: "wrap" }}>
                 {t.tags.map(tag => (
-                  <span key={tag} style={{ fontSize: 11, background: "var(--color-background-tertiary)", color: "var(--color-text-tertiary)", padding: "1px 7px", borderRadius: 3 }}>{tag}</span>
+                  <span key={tag} style={{ fontSize: 11, background: "var(--color-background-tertiary)", color: "var(--color-text-tertiary)", padding: "2px 8px", borderRadius: 4 }}>{tag}</span>
                 ))}
               </div>
             </div>
-          ))}
+            ))}
         </div>
         <div style={{ padding: "8px 12px", borderTop: "0.5px solid var(--color-border-tertiary)", fontSize: 12, color: "var(--color-text-tertiary)" }}>
           {TRANSITIONS.length} transiciones · v1.0
@@ -381,7 +381,7 @@ export default function App() {
               background: "var(--color-background-secondary)",
             }}
           >
-            <div style={{ width: "100%", maxWidth: "none", aspectRatio: "16 / 9" }}>
+            <div style={{ width: "100%", maxWidth: "none", aspectRatio: "16 / 9", transform: "scale(0.95)", transformOrigin: "center center" }}>
               <PreviewCanvas
                 transition={selected}
                 params={currentParams}
@@ -428,22 +428,22 @@ export default function App() {
 
       {/* Right panel — params */}
       <div style={{ width: "clamp(300px, 20vw, 380px)", borderLeft: "0.5px solid var(--color-border-tertiary)", display: "flex", flexDirection: "column", flexShrink: 0 }}>
-        <div style={{ padding: "5px 10px 4px", borderBottom: "0.5px solid var(--color-border-tertiary)" }}>
-          <div style={{ fontSize: 11, fontWeight: 500, color: "var(--color-text-secondary)", letterSpacing: 1 }}>PARÁMETROS</div>
+        <div style={{ padding: "8px 12px 6px", borderBottom: "0.5px solid var(--color-border-tertiary)" }}>
+          <div style={{ fontSize: 13, fontWeight: 600, color: "var(--color-text-secondary)", letterSpacing: 1 }}>PARÁMETROS</div>
         </div>
-        <div style={{ flex: 1, overflowY: "auto", padding: "8px 10px" }}>
+        <div style={{ flex: 1, overflowY: "auto", padding: "10px 12px" }}>
           {selected.params.map(p => (
             <ParamControl key={p.id} param={p} value={currentParams[p.id]} onChange={v => setParam(p.id, v)} />
           ))}
         </div>
-        <div style={{ padding: "6px 10px", borderTop: "0.5px solid var(--color-border-tertiary)", display: "flex", flexDirection: "column", gap: 4 }}>
+        <div style={{ padding: "8px 12px", borderTop: "0.5px solid var(--color-border-tertiary)", display: "flex", flexDirection: "column", gap: 6 }}>
           <button onClick={handlePlay}
-            style={{ width: "100%", padding: "6px", fontWeight: 500, fontSize: 12, cursor: "pointer", background: selected.color + "22", color: selected.color, border: `1px solid ${selected.color}66`, borderRadius: 4 }}>
+            style={{ width: "100%", padding: "8px", fontWeight: 600, fontSize: 13, cursor: "pointer", background: selected.color + "22", color: selected.color, border: `1px solid ${selected.color}66`, borderRadius: 6 }}>
             ▶ Reproducir
           </button>
           <button onClick={handleExport} disabled={exporting}
             style={{
-              width: "100%", padding: "6px", fontWeight: 500, fontSize: 12, borderRadius: 4,
+              width: "100%", padding: "8px", fontWeight: 600, fontSize: 13, borderRadius: 6,
               cursor: exporting ? "wait" : "pointer",
               background: exporting ? "#ff880033" : "#ff880022",
               color: exporting ? "#ff8800" : "#ff8800",
@@ -456,7 +456,7 @@ export default function App() {
             const init = {};
             selected.params.forEach(p => { init[p.id] = p.default; });
             setParams(prev => ({ ...prev, [selected.id]: init }));
-          }} style={{ width: "100%", padding: "5px", fontSize: 11, cursor: "pointer" }}>
+          }} style={{ width: "100%", padding: "6px", fontSize: 12, cursor: "pointer" }}>
             ↺ Restaurar
           </button>
         </div>

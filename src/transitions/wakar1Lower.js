@@ -1,6 +1,6 @@
 export const wakar1Lower = {
   id: "wakar1_lower",
-  name: "WAKAR1 Intro",
+  name: "Intro Inferior",
   category: "Branding",
   icon: "🚀",
   description: "Lower-third de marca con slogan animado",
