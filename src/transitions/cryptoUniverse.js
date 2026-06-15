@@ -53,6 +53,30 @@ let _particles = null;
 let _nodes = null;
 let _lastScene = -1;
 
+function drawCryptopCenter(ctx, x, y, size, t) {
+  const pulse = 1 + Math.sin(t * 0.0018) * 0.05;
+  const s = size * pulse;
+
+  ctx.save();
+  ctx.shadowColor = '#00d4ff';
+  ctx.shadowBlur = size * 0.18;
+
+  ctx.beginPath();
+  ctx.arc(x, y, s * 0.45, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(0,212,255,0.2)';
+  ctx.fill();
+  ctx.strokeStyle = '#00d4ff';
+  ctx.lineWidth = s * 0.03;
+  ctx.stroke();
+  ctx.fillStyle = '#00d4ff';
+  ctx.font = `bold ${s * 0.22}px system-ui`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('CRIPTOP', x, y);
+
+  ctx.restore();
+}
+
 function initCache(scene, W, H) {
   if (_lastScene === scene && _particles && _nodes) return;
   _lastScene = scene;
@@ -610,6 +634,9 @@ function sceneUniverse(ctx, W, H, progress) {
     ctx.restore();
   });
 
+  // Logo central reemplazando la marca crypto de texto en la escena.
+  drawCryptopCenter(ctx, cx, cy, Math.min(W, H) * 0.22, t);
+
   // Large outer orbit ring
   ctx.save();
   ctx.translate(cx, cy); ctx.rotate(t * 0.0002);
@@ -624,7 +651,7 @@ function sceneUniverse(ctx, W, H, progress) {
   const chart = genPrice(5, 60, 100, 25);
   drawChart(ctx, chart, W * 0.08, H * 0.75, W * 0.84, H * 0.13, '#00d4ff');
 
-  drawTitle(ctx, W, H, progress, 'CRYPTO', 'The Future of Finance', '#00d4ff');
+  drawTitle(ctx, W, H, progress, 'CRIPTOP', 'The Future of Finance', '#00d4ff');
   drawHUD(ctx, W, H, progress, 'UNIVERSE', `MARKET CAP: $${(2.5 + Math.sin(t * 0.0005) * 0.2).toFixed(2)}T`, '#00d4ff', 'GLOBAL');
 }
 

@@ -7,9 +7,11 @@ import { smartMoneyTransition, drawSmartMoneyTransition } from './smartMoneyTran
 import { bigBelugaTransition, drawBigBelugaTransition } from './bigBelugaTransition';
 import { cryptoUniverseTransition, drawCryptoUniverse } from './cryptoUniverse';
 import { introTransition, drawIntroTransition } from './introTransition';
+import { pixabayIntroTransition, drawPixabayIntroTransition } from './pixabayIntroTransition';
 
 export const TRANSITIONS = [
   introTransition,
+  pixabayIntroTransition,
   priceAlert,
   wakar1Lower,
   aiScan,
@@ -22,6 +24,7 @@ export const TRANSITIONS = [
 
 export const DRAW_FUNCTIONS = {
   intro: drawIntroTransition,
+  pixabay_intro: drawPixabayIntroTransition,
   price_alert: drawPriceAlert,
   wakar1_lower: drawWakar1Lower,
   ai_scan: drawAiScan,
