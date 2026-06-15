@@ -52,9 +52,9 @@ export function drawMarketTransition(ctx, W, H, progress, p) {
     ctx.beginPath(); ctx.roundRect(W / 2 - 120, H / 2 - 30, 240, 60, 6); ctx.fill();
     
     ctx.fillStyle = wC;
-    ctx.font = "bold 20px sans-serif";
+    ctx.font = "bold 60px sans-serif";
     ctx.textAlign = "center";
-    ctx.fillText(p.label || "ANÁLISIS EN VIVO", W / 2, H / 2 + 8);
+    ctx.fillText(p.label || "ANÁLISIS EN VIVO", W / 2, H / 2 + 18);
     
     ctx.textAlign = "left";
     ctx.globalAlpha = 1;
