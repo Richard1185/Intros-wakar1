@@ -8,10 +8,14 @@ import { bigBelugaTransition, drawBigBelugaTransition } from './bigBelugaTransit
 import { cryptoUniverseTransition, drawCryptoUniverse } from './cryptoUniverse';
 import { introTransition, drawIntroTransition } from './introTransition';
 import { pixabayIntroTransition, drawPixabayIntroTransition } from './pixabayIntroTransition';
+import { wakar1CinematicTransition, drawWakar1CinematicTransition } from './wakar1CinematicTransition';
+import { wakar1TokenTransition, drawWakar1TokenTransition } from './wakar1TokenTransition';
 
 export const TRANSITIONS = [
   introTransition,
   pixabayIntroTransition,
+  wakar1CinematicTransition,
+  wakar1TokenTransition,
   priceAlert,
   wakar1Lower,
   aiScan,
@@ -25,6 +29,8 @@ export const TRANSITIONS = [
 export const DRAW_FUNCTIONS = {
   intro: drawIntroTransition,
   pixabay_intro: drawPixabayIntroTransition,
+  wakar1_cinematic: drawWakar1CinematicTransition,
+  wakar1_token: drawWakar1TokenTransition,
   price_alert: drawPriceAlert,
   wakar1_lower: drawWakar1Lower,
   ai_scan: drawAiScan,
